@@ -33,13 +33,11 @@ namespace templateAddin
         public static void RegisterFunction(Type t)
         {
             #region Get Custom Attribute: SwAddinAttribute
-            Console.WriteLine("1");
             SwAddinAttribute SWattr = null;
             Type type = typeof(SwAddin);
 
             foreach (System.Attribute attr in type.GetCustomAttributes(false))
             {
-                Console.WriteLine("2");
                 if (attr is SwAddinAttribute)
                 {
                     SWattr = attr as SwAddinAttribute;
