@@ -15,13 +15,9 @@ using System.ComponentModel;
 
 namespace templateAddin
 {
-
-    [ComVisible(true)]
-    [Guid("9abb7e56-8685-4884-93e1-ad38d7071dc2")]
-    [DisplayName("PCB3D")]
-    [Description("PCB3D")]
-    
-    public class PCB3D : ISwAddin
+    [Guid("3d605915-bd53-4097-a24f-ce262db3bab0"), ComVisible(true)]
+    [SwAddin( Description = "PCB3D description", Title = "PCB3D", LoadAtStartup = true )]
+    public class SwAddin : ISwAddin
     {
         #region Local Variables
         ISldWorks iSwApp = null;
@@ -37,11 +33,13 @@ namespace templateAddin
         public static void RegisterFunction(Type t)
         {
             #region Get Custom Attribute: SwAddinAttribute
+            Console.WriteLine("1");
             SwAddinAttribute SWattr = null;
             Type type = typeof(SwAddin);
 
             foreach (System.Attribute attr in type.GetCustomAttributes(false))
             {
+                Console.WriteLine("2");
                 if (attr is SwAddinAttribute)
                 {
                     SWattr = attr as SwAddinAttribute;
@@ -110,7 +108,7 @@ namespace templateAddin
         #endregion
 
         #region ISwAddin Implementation
-
+      
         public bool ConnectToSW(object ThisSW, int cookie)
         {
             iSwApp = ThisSW as ISldWorks;
